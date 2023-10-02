@@ -7,7 +7,7 @@ public class GameBoard {
     // Main method to test the class
     public static void main(String[] args) {
         GameBoard myBoard = new GameBoard();
-        myBoard.printGameBoard();
+        myBoard.playGame();
     }
 
     // Constructor
@@ -55,7 +55,7 @@ public class GameBoard {
     // Print out the board to the terminal
     public void printGameBoard(){
         // Iterate across game Board printing out pieces
-       for (int column=0; column<8;column++){
+       for (int column=7; column>=0;column--){
            for (int row=0;row<8;row++){
                Piece currentPiece = boardState[row][column];
 
@@ -79,38 +79,38 @@ public class GameBoard {
 
     // Update Pieces on the board
     public void updateBoard(){
+        // Prompt user for input on the movement of the pieces
         Scanner scanObject = new Scanner(System.in);
-        System.out.println("Start Position:");
-        System.out.println("Row: ");
+        System.out.println("Start Position");
+        System.out.print("Row: ");
         int row1 = scanObject.nextInt();
+        System.out.print("Column: ");
         int column1 = scanObject.nextInt();
-        System.out.println("End Position: ");
+        System.out.println("End Position");
+        System.out.print("Row: ");
+        int row2 = scanObject.nextInt();
+        System.out.print("Column: ");
+        int column2 = scanObject.nextInt();
 
-
-
-    }
-
-    // Move chess pieces
-    public void startGame(){
-        int answer=9;
-        Scanner scanObject = new Scanner(System.in);
-        while (answer!=0){
-            printGameBoard();
-
-        }
+        // Move the Pieces
+        Piece pieceToMove = boardState[column1][row1];
+        boardState[column2 ][row2] = pieceToMove;
+        boardState[column1][row1] = null;
     }
 
     // Play chess via terminal
     public void playGame(){
         Scanner scanObject = new Scanner(System.in);
         int answer = 9;
+        startScreen();
         // Loop to re-run until user exits
         while (answer!=0){
+            printGameBoard();
+            System.out.println("1) Move Piece");
+            System.out.println("0) Exit");
             answer = scanObject.nextInt();
-            startScreen();
-            if (answer == 0){
-                startGame();
+            if (answer == 1)
+                updateBoard();
             }
         }
     }
-}
