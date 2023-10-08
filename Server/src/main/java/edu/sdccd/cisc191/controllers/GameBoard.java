@@ -1,14 +1,10 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.controllers;
+import edu.sdccd.cisc191.models.*;
+
 import java.util.Scanner;
 
 public class GameBoard {
-    Piece [][] boardState;
-
-    // Main method to test the class
-    public static void main(String[] args) {
-        GameBoard myBoard = new GameBoard();
-        myBoard.playGame();
-    }
+    Piece[][] boardState;
 
     // Constructor
     public GameBoard(){
